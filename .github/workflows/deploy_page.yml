@@ -16,14 +16,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "pnpm"
 
       - name: Install pnpm
         run: npm install -g pnpm
 
       - name: Install dependencies
+        working-directory: ./subdiretorio
         run: pnpm install
 
       - name: Build Astro
+        working-directory: ./subdiretorio
         run: pnpm run build
 
       - name: Deploy to GitHub Pages
